@@ -1,7 +1,7 @@
 #include<cstdio>
 #include<cstring> 
 using namespace std;
-#define P 12505
+#define P 62505
 int n,t,p,q,top,a[P],mp[P],stk[P];
 int main() {
 	scanf("%d",&t);
@@ -32,9 +32,3 @@ int main() {
 		printf("Case %d: %d\n",cas,top);
 	}
 }
-/*
-1
-3 6 7
-1 7 5 4 8 3 9
-1 4 3 5 6 2 8 9
-*/
