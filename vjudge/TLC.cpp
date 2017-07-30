@@ -24,7 +24,7 @@ inline bool ok() {
 		for(int j=1; j<=m; ++j) {
 			if(map[i][j]==16843009) {
 				if(!vis[i][j]) return 0;
-			} else{
+			} else {
 				if(map[i][j]>0) return 0;
 			}
 		}
@@ -32,18 +32,11 @@ inline bool ok() {
 	return 1;
 }
 inline bool judge(int r,int c) {
-	for(int i=1; i<=n; ++i) {
-		for(int j=1; j<=m; ++j) {
-			printf("%d ",vis[i][j]);
-		}
-		puts("");
-	}
 	if(map[r][c]!=16843009||vis[r][c]) return 0;
 	for(int i=0; i<4; ++i) {
 		int x=r+cr[i],y=c+cc[i];
 		if(inm(x,y)&&!map[x][y]) return 0;
 	}
-	puts("d");
 	int x=r,y=c+1;
 	if(map[x][y]<5) {
 		for(int i=x-1; i&&map[i][y]>5; --i) {
@@ -59,9 +52,8 @@ void dfs(int r,int c,int t) {
 	}
 	if(t>ans) return;
 	for(int i=r; i<=n; ++i) {
-		for(int j=i==r?c+1:1; j<=n; ++j) {
+		for(int j=i==r?c+1:1; j<=m; ++j) {
 			if(judge(i,j)) {
-//				printf("%d %d\n",i,j);
 				mod(i,j,1);
 				dfs(i,j,t+1);
 				mod(i,j,-1);
