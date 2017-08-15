@@ -38,7 +38,7 @@ void tarjan(int x) {
 			k=stk[top--];
 			ins[k]=0;
 			fa[k]=cnf;
-			mc[cnf]=min(mc[cnf],mb[k].c);
+			mc[cnf]=min(mc[cnf],mb[k].c); 
 		} while(k!=x);
 	}
 }
