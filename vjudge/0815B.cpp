@@ -41,13 +41,16 @@ int main(){
     while(T--){
         cnt=cnf=clk=0;
         memset(fir,0,sizeof(fir));
+        memset(dfn,0,sizeof(dfn));
+        memset(ind,0,sizeof(ind));
+        memset(otd,0,sizeof(otd));
         scanf("%d%d",&n,&m);
         for(int a,b,i=1;i<=m;++i){
             scanf("%d%d",&a,&b);
             add(a,b);
         }
         for(int i=1;i<=n;++i){
-            if(dfn[i]) tarjan(i);
+            if(!dfn[i]) tarjan(i);
         }
         for(int x=1;x<=n;++x){
             for(int i=fir[x];i;i=eg[i].nx){
@@ -63,8 +66,8 @@ int main(){
                 X=min(X,sz[i]);
             }
         }
-        ans=n*(n-1);
-        ans-=m+X*(n-X);
+        ans=n*(n-1)-m-X*(n-X);
         printf("Case %d: %d\n",++cas,ans);
     }
+    return 0;
 }
