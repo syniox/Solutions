@@ -23,7 +23,7 @@ void tarjan(int x) {
 	low[x]=dfn[x]=++clk;
 	ins[x]=1;
 	stk[++top]=x;
-	for(int i=1; i<=n; ++i) {
+	for(int i=fir[x]; i; i=eg[i].nx) {
 		int y=eg[i].to;
 		if(!dfn[y]) {
 			tarjan(y);
@@ -45,15 +45,17 @@ void tarjan(int x) {
 int main() {
 	scanf("%d",&T);
 	for(int cas=1; cas<=T; ++cas) {
-		ans=cnt=cnf=0;
+		ans=cnt=cnf=clk=0;
+		memset(dfn,0,sizeof(dfn));
 		memset(fir,0,sizeof(fir));
 		memset(mc,127,sizeof(mc));
+		memset(ind,0,sizeof(ind));
 		scanf("%d",&n);
 		for(int i=1; i<=n; ++i) {
 			scanf("%d%d%d%d",&mb[i].x,&mb[i].y,&mb[i].r,&mb[i].c);
 			for(int j=1; j<i; ++j) {
-				int x=mb[i].x-mb[j].x,y=mb[i].y-mb[j].y;
-				float dis=sqrt(x*x+y*y);
+				long long x=mb[i].x-mb[j].x,y=mb[i].y-mb[j].y;
+				double dis=sqrt(x*x+y*y);
 				if(mb[i].r>=dis) add(i,j);
 				if(mb[j].r>=dis) add(j,i);
 			}
