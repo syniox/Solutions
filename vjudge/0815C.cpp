@@ -4,7 +4,7 @@
 using namespace std;
 #define N 1005
 int T,n,m,cnt,ans,dp[N],fir[N],fis[N];
-int cnf,clk,top,stk[N],dfn[N],low[N],sz[N];
+int cnf,clk,top,sz[N],fa[N],stk[N],dfn[N],low[N];
 bool ins[N];
 struct edge{
     int to,nx;
@@ -13,7 +13,7 @@ inline void add(int a,int b){
     eg[++cnt]=(edge){b,fir[a]};
     fir[a]=cnt;
 }
-inline tarjan(int x){
+inline void tarjan(int x){
     dfn[x]=low[x]=++clk;
     stk[++top]=x;
     ins[x]=1;
