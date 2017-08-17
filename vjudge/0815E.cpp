@@ -4,23 +4,21 @@
 #include<vector>
 using namespace std;
 #define N 3000
-int T,n,m,cnt,top,s[N],id[N],fir[N],cbf[N],hp[N];
+int T,n,m,cnt,top,s[N],id[N],fir[N],cbf[N];
 long long dis[N];
 vector<int> prt[N];
 struct edge {
 	int to,wi,nx;
 } eg[N*24];
 inline void add(int a,int b,int v) {
-	eg[++cnt]=(edge) {
-		b,v,fir[a]
-	};
+	eg[++cnt]=(edge) {b,v,fir[a]};
 	fir[a]=cnt;
 }
 inline void dij() {
 	for(int i=1; i<=n; ++i) {
-		long long x=0,tp=123456789012345;
+		long long x=0,tp=123456789012345678;
 		for(int i=1; i<=n; ++i) {
-			if(!s[i]&&dis[i]<tp) {
+			if(!cbf[i]&&!s[i]&&dis[i]<tp) {
 				x=i,tp=dis[i];
 			}
 		}
@@ -30,8 +28,8 @@ inline void dij() {
 		}
 		prt[x].clear();
 		for(int i=fir[x]; i; i=eg[i].nx) {
-			int y=eg[i].to,w=eg[i].wi+dis[x];
-			if(!cbf[y]&&dis[y]>w) {
+			long long y=eg[i].to,w=eg[i].wi+dis[x];
+			if(dis[y]>w) {
 				dis[y]=w;
 			}
 		}
@@ -59,7 +57,7 @@ int main() {
 		}
 		dis[0]=dis[1]=0;
 		dij();
-		printf("%lld",dis[n]);
+		printf("%lld\n",dis[n]);
 	}
 	return 0;
 }
