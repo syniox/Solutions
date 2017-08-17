@@ -5,7 +5,7 @@
 using namespace std;
 #define N 3000
 int T,n,m,cnt,top,s[N],id[N],fir[N],cbf[N];
-long long dis[N];
+long long dis[N],aft[N];
 vector<int> prt[N];
 struct edge {
 	int to,wi,nx;
@@ -23,14 +23,19 @@ inline void dij() {
 			}
 		}
 		s[x]=1;
-		for(int i=0; i<prt[x].size(); ++i) {
-			--cbf[prt[x][i]];
+		for(int k,i=0; i<prt[x].size(); ++i) {
+			k=prt[x][i];
+			--cbf[k];
+			aft[k]=max(aft[k],dis[x]);
+			if(dis[k]<1234567890123456&&!cbf[k]){
+				dis[k]=max(dis[k],aft[k]);
+			}
 		}
 		prt[x].clear();
 		for(int i=fir[x]; i; i=eg[i].nx) {
 			long long y=eg[i].to,w=eg[i].wi+dis[x];
 			if(dis[y]>w) {
-				dis[y]=w;
+				dis[y]=max(aft[y],w);
 			}
 		}
 	}
