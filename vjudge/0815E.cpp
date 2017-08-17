@@ -3,8 +3,8 @@
 #include<cstring>
 #include<vector>
 using namespace std;
-#define N 3000
-int T,n,m,cnt,top,s[N],id[N],fir[N],cbf[N];
+#define N 3002
+int T,n,m,cnt,s[N],fir[N],cbf[N];
 long long dis[N],aft[N];
 vector<int> prt[N];
 struct edge {
@@ -48,6 +48,7 @@ int main() {
 		memset(s,0,sizeof(s));
 		memset(dis,127,sizeof(dis));
 		memset(fir,0,sizeof(fir));
+		memset(aft,0,sizeof(aft));
 		for(int a,b,v,i=1; i<=m; ++i) {
 			scanf("%d%d%d",&a,&b,&v);
 			add(a,b,v);
