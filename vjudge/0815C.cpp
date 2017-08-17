@@ -50,6 +50,8 @@ int main(){
     while(T--){
         cnt=cnf=clk=ans=0;
         memset(fir,0,sizeof(fir));
+        memset(fis,0,sizeof(fis));
+        memset(dfn,0,sizeof(dfn));
         scanf("%d%d",&n,&m);
         for(int a,b,i=1;i<=m;++i){
             scanf("%d%d",&a,&b);
@@ -63,8 +65,8 @@ int main(){
             for(int i=fir[x];i;i=eg[i].nx){
                 int y=eg[i].to;
                 if(fa[x]!=fa[y]){
-                    sce[++cnt]=(edge){fa[y],fis[x]};
-                    fis[x]=cnt;
+                    sce[++cnt]=(edge){fa[y],fis[fa[x]]};
+                    fis[fa[x]]=cnt;
                 }
             }
         }
