@@ -36,6 +36,7 @@ inline node fr(node &x) {
 	return tp;
 }
 inline void mov(node &x,ll cs) {
+	x.dep-=cs;
 	while(cs) {
 		ll xy=x.b-x.a,yz=x.c-x.b;
 		if(xy<yz) {
@@ -52,10 +53,10 @@ inline void mov(node &x,ll cs) {
 	}
 }
 inline void lca() {
-	if(s.dep>t.dep) mov(s,s.dep-t.dep);
-	else mov(t,t.dep-s.dep);
-	int cnd=Abs(s.dep-t.dep);
-	cnt+=cnd,s.dep-=cnd;
+	int dx=s.dep-t.dep;
+	if(dx>0) mov(s,dx);
+	else mov(t,-dx);
+	cnt+=Abs(dx);
 	if(s.a==t.a&&s.b==t.b&&s.c==t.c) return;
 	for(int k=31; k>=0; --k) {
 		if(s.dep>=(ll)1<<k&&t.dep>=(ll)1<<k) {
