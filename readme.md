@@ -1,4 +1,4 @@
 Legacy.
 
-[current](https://github.com/syniox/Online_Judge_solutions)
+[current repo](https://github.com/syniox/Online_Judge_solutions)
 
